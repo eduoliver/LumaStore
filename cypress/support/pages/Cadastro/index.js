@@ -1,7 +1,6 @@
 const el = require("./elements").ELEMENTS;
 
 class Cadastro {
-
     acessarPaginaCadastro() {
         cy.visit('https://magento2-demo.magebit.com/')
         cy.contains('Create an Account')
@@ -21,19 +20,18 @@ class Cadastro {
     preencherEmail() {
         cy.get(el.email)
             .type('eduardo@gmail.br')
-
     }
 
     preencherPassword() {
-        cy.wait(70)
+        cy.wait(100)
         cy.get(el.password)
             .type('A23456b#')
     }
     
     preencherConfirmPassword() {
-        cy.wait(70)
+        cy.wait(100)
         cy.get(el.passwordConfirm)
-            .type('A23456b')
+            .type('A23456b#')
     }
 
         clickBotaoSubmit() {
@@ -52,6 +50,38 @@ class Cadastro {
             .should('be.visible')
     }
 
+    validaErroEmail() {
+        cy.get(el.email)
+            .should('be.visible')
+    }
+
+    validaErroPasswordVazio() {
+        cy.get(el.errorPassorword)
+            .should('be.visible')
+    }
+
+    assinarNewslleter() {
+        cy.get(el.newsletter)
+            .click()
+        }
+
+            preencherPassword() {
+        cy.wait(100)
+        cy.get(el.password)
+            .type('A23456b#')
+    }
+
+    preencherPasswordMalFormado() {
+        cy.wait(100)
+        cy.get(el.password)
+            .type('AAAAAAAA')
+    }
+
+    validaErroPasswordMalFormado() {
+        cy.get(el.errorPassorword)
+            .should('be.visible')
+            .should('contains.', el.textInvalidPassword)
+    }    
 }
 
 export default new Cadastro();
