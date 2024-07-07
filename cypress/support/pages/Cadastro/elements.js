@@ -9,6 +9,9 @@ export const ELEMENTS = {
     firstNameError:'#firstname-error',
     lastNameError: '#lastname-error',
     emailError: '#email_address-error',
-    errorPassorword: '#password-error',
-    textInvalidPassword: 'inimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.'
+    errorPassword: '#password-error',
+    errorConfirmPassword: '#password-confirmation-error',
+    textInvalidPassword: 'Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.',
+    textInvalidEmail: 'Please enter a valid email address (Ex: johndoe@domain.com).',
+    textInvalidConfirmPassword: 'Please enter the same value again.'
 }

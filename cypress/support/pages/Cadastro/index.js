@@ -56,7 +56,7 @@ class Cadastro {
     }
 
     validaErroPasswordVazio() {
-        cy.get(el.errorPassorword)
+        cy.get(el.errorPassword)
             .should('be.visible')
     }
 
@@ -65,10 +65,10 @@ class Cadastro {
             .click()
         }
 
-            preencherPassword() {
+    preencherPassword() {
         cy.wait(100)
         cy.get(el.password)
-            .type('A23456b#')
+        .type('A23456b#')
     }
 
     preencherPasswordMalFormado() {
@@ -78,10 +78,38 @@ class Cadastro {
     }
 
     validaErroPasswordMalFormado() {
-        cy.get(el.errorPassorword)
+        cy.get(el.errorPassword)
             .should('be.visible')
-            .should('contains.', el.textInvalidPassword)
-    }    
+            .should('have.text', el.textInvalidPassword)
+    }
+
+    validaErroConfirmPassword() {
+        cy.get(el.errorConfirmPassword)
+            .should('be.visible')
+    }
+
+    validaErroEmaildMalFormado() {
+        cy.get(el.emailError)
+            .should('be.visible')
+            .should('have.text', el.textInvalidEmail)
+    }
+
+    preencherEmailMalformado() {
+        cy.get(el.email)
+            .type('eduardo@gmail')
+    }
+
+    preencherConfirmPasswordInvalido() {
+        cy.wait(100)
+        cy.get(el.passwordConfirm)
+            .type('A23456b!')
+    }
+
+    validarErroConfirmPasswordMalFormado(){
+        cy.get(el.errorConfirmPassword)
+        .should('be.visible')
+        .should('have.text', el.textInvalidConfirmPassword)
+    }
 }
 
 export default new Cadastro();
