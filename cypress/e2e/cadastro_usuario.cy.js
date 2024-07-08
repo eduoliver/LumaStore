@@ -36,7 +36,7 @@ describe('Cadastro de usuário sem todos os campos obrigatórios preenchidos', (
                 it('Então é mostrado erro no campo Last Name', () => {
                     Cadastro.validaErroLastName();
                 })
-            })
+        })
 
         context('Quando ela submete o formulário sem preencher o campo Email', () => {
             beforeEach(() => {
@@ -49,7 +49,7 @@ describe('Cadastro de usuário sem todos os campos obrigatórios preenchidos', (
                 it('Então é mostrado erro no campo Email', () => {
                     Cadastro.validaErroEmail();
                 })
-            })        
+        })        
                 
         context('Quando ela submete o formulário sem preencher o campo Password', () => {
             beforeEach(() => {
@@ -90,9 +90,8 @@ describe('Cadastro de usuário com campos mal formados', () => {
                 beforeEach(() => {
                     Cadastro.preencherFirstName();
                     Cadastro.preencherLastName();
-                    Cadastro.assinarNewslleter();
                     Cadastro.preencherEmail();
-                    Cadastro.preencherPasswordMalFormado();
+                    Cadastro.preencherPassworMalFormado();
                     Cadastro.preencherConfirmPassword();
                     Cadastro.clickBotaoSubmit();
                 })        
@@ -101,7 +100,7 @@ describe('Cadastro de usuário com campos mal formados', () => {
                     })                
             })
 
-            context('Quando ela submete o formulário com o campo Confirm Password diferente do campo Password', () => {
+            context('Quando ela submete o formulário com o campo Confirm Password inválido', () => {
                 beforeEach(() => {
                     Cadastro.preencherFirstName();
                     Cadastro.preencherLastName();
@@ -120,7 +119,6 @@ describe('Cadastro de usuário com campos mal formados', () => {
                 beforeEach(() => {
                     Cadastro.preencherFirstName();
                     Cadastro.preencherLastName();
-                    Cadastro.assinarNewslleter();
                     Cadastro.preencherEmailMalformado();
                     Cadastro.preencherPassword();
                     Cadastro.preencherConfirmPassword();
@@ -132,4 +130,45 @@ describe('Cadastro de usuário com campos mal formados', () => {
             })  
     })
 
+})
+
+describe('Cadastro de usuário com campos válidos', () => {
+    context('Dado que Yasmin acessa o formulário de cadastro da loja Luma', () => {
+        beforeEach(() => {
+            Cadastro.acessarPaginaCadastro();
+            cy.intercept('POST', '**/createpost/').as('userRegistered')
+        })
+        
+        context('Quando ela submete o formulário para um usuário já cadastrado', () => {
+            beforeEach(() => {
+                Cadastro.preencherFirstName();
+                Cadastro.preencherLastName();
+                Cadastro.preencherEmail();
+                Cadastro.preencherPassword();
+                Cadastro.preencherConfirmPassword();
+                Cadastro.clickBotaoSubmit();      
+                cy.wait(100)  
+            })
+                it('Então é mostrada a mensagem de usuário já cadastrado', () => {
+                    cy.wait('@userRegistered')
+                    Cadastro.validarCadastroExistente();
+                })
+        })        
+
+        context('Quando ela submete o formulário com todos os campos válidos', () => {
+            beforeEach(() => {
+                Cadastro.preencherFirstName();
+                Cadastro.preencherLastName();
+                Cadastro.preencherEmailRandomico();
+                Cadastro.preencherPassword();
+                Cadastro.preencherConfirmPassword();
+                Cadastro.clickBotaoSubmit();        
+                cy.wait(100)
+            })
+                it('Então é mostrada a mensagem de usuário cadastrado com sucesso', () => {
+                    cy.wait('@userRegistered')
+                    Cadastro.validarCadastroSucesso();
+                })
+        })      
+    })
 })

@@ -5,40 +5,46 @@ class Cadastro {
         cy.visit('https://magento2-demo.magebit.com/')
         cy.contains('Create an Account')
             .click()
+        cy.wait(60)
     }
 
     preencherFirstName() {
         cy.get(el.firstName)
+            .click()
             .type('Eduardo')
     }
 
     preencherLastName() {
         cy.get(el.lastName)
+            .click()
             .type('Oliveira')
     }
 
     preencherEmail() {
         cy.get(el.email)
+            .click()
             .type('eduardo@gmail.br')
     }
 
     preencherPassword() {
-        cy.wait(100)
+        cy.wait(50)
         cy.get(el.password)
+            .click()
             .type('A23456b#')
     }
     
     preencherConfirmPassword() {
-        cy.wait(100)
+        cy.wait(50)
         cy.get(el.passwordConfirm)
+            .click()
             .type('A23456b#')
     }
 
-        clickBotaoSubmit() {
-        cy.get('.primary')
-            .contains('Create an Account')
-            .click()
-        }
+    clickBotaoSubmit() {
+    cy.get('.primary')
+        .contains('Create an Account')
+        .click()
+    }
 
     validaErroFirstName() {
         cy.get(el.firstNameError)
@@ -65,15 +71,10 @@ class Cadastro {
             .click()
         }
 
-    preencherPassword() {
-        cy.wait(100)
+    preencherPassworMalFormado() {
+        cy.wait(50)
         cy.get(el.password)
-        .type('A23456b#')
-    }
-
-    preencherPasswordMalFormado() {
-        cy.wait(100)
-        cy.get(el.password)
+            .click()
             .type('AAAAAAAA')
     }
 
@@ -96,19 +97,39 @@ class Cadastro {
 
     preencherEmailMalformado() {
         cy.get(el.email)
+            .click()
             .type('eduardo@gmail')
     }
 
     preencherConfirmPasswordInvalido() {
-        cy.wait(100)
+        cy.wait(50)
         cy.get(el.passwordConfirm)
+            .click()
             .type('A23456b!')
     }
 
-    validarErroConfirmPasswordMalFormado(){
+    validarErroConfirmPasswordMalFormado() {
         cy.get(el.errorConfirmPassword)
+            .should('be.visible')
+            .should('have.text', el.textInvalidConfirmPassword)
+    }
+
+    validarCadastroSucesso() {
+        cy.get(el.registeredSuccess)
         .should('be.visible')
-        .should('have.text', el.textInvalidConfirmPassword)
+        .should('have.text', el.textRegisteredSuccess)
+    }
+
+    validarCadastroExistente() {
+        cy.get(el.userExist)
+        .should('be.visible')
+        .should('have.text', el.textUserExist)
+    }
+
+    preencherEmailRandomico() {
+        const randomEmail = Math.random().toString(30).substring(2,15)+"@gmail.br"
+        cy.get(el.email)
+            .type(randomEmail)
     }
 }
 
