@@ -89,7 +89,7 @@ class Cadastro {
             .should('be.visible')
     }
 
-    validaErroEmaildMalFormado() {
+    validaErroEmailMalFormado() {
         cy.get(el.emailError)
             .should('be.visible')
             .should('have.text', el.textInvalidEmail)
@@ -129,6 +129,7 @@ class Cadastro {
     preencherEmailRandomico() {
         const randomEmail = Math.random().toString(30).substring(2,15)+"@gmail.br"
         cy.get(el.email)
+            .click()
             .type(randomEmail)
     }
 }
