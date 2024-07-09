@@ -1,4 +1,4 @@
-# Título do projeto
+# Automação de testes - Site Luma
 
 Projeto de automação de testes do site Luma
 Nesse projeto realizamos testes dos principais fluxos de uso do sistema
