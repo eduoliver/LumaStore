@@ -4,6 +4,7 @@
 * Para aproveitar todas as vantagens oferecidas pela loja
 */
 
+import cadastro from "../support/pages/cadastro";
 import Login from "../support/pages/Login"
 
 describe('Realizar login na loja sem campos obrigatórios preenchidos', () => {
@@ -69,15 +70,19 @@ describe('Realizar login na loja', () => {
                     })
             })
 
-            context.only('Quando ela submete o login para um usuário cadastrado', () => {
+            context('Quando ela submete o login para um usuário cadastrado', () => {
                 beforeEach(() => {
+                    cadastro.primeiroCadastro(); //Realiza cadastro prévio
+                    Login.acessarLogin();
                     Login.preencherEmail();
                     Login.preencherPassword();
                     Login.submit();
                 })
                     it('Então é mostrada a área logada do usuário', () => {
-                        //Login.validarUsuarioNaoExistente();
+                        Login.validarUsuarioLogado();
                     })
+
+
             })
     }) 
 })   

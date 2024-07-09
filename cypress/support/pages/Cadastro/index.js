@@ -132,6 +132,17 @@ class Cadastro {
             .click()
             .type(randomEmail)
     }
+
+    primeiroCadastro() {
+        this.acessarPaginaCadastro();
+        this.preencherFirstName();
+        this.preencherLastName();
+        this.preencherEmail();
+        this.preencherPassword();
+        this.preencherConfirmPassword();
+        this.clickBotaoSubmit();      
+        cy.wait(100)
+    }
 }
 
 export default new Cadastro();

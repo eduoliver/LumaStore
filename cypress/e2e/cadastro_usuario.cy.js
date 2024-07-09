@@ -140,6 +140,8 @@ describe('Cadastro de usuário com campos válidos', () => {
         
         context('Quando ela submete o formulário para um usuário já cadastrado', () => {
             beforeEach(() => {
+                Cadastro.primeiroCadastro(); //Realiza um cadastro prévio
+                Cadastro.acessarPaginaCadastro();
                 Cadastro.preencherFirstName();
                 Cadastro.preencherLastName();
                 Cadastro.preencherEmail();

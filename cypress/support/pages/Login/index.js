@@ -31,7 +31,7 @@ class Login {
     preencherPassword() {
         cy.get(el.password)
             .click()
-            .type('A123456#')   
+            .type('A23456b#')
         cy.wait(500)
     }
 
@@ -64,6 +64,11 @@ class Login {
         cy.get(el.nonExistentUser)
             .should('be.visible')
             .should('have.text', el.textNonexistUser)
+    }
+
+    validarUsuarioLogado() {
+        cy.get('.greet .logged-in')
+            .contains(el.textUserLogged)
     }
 }
 export default new Login();
