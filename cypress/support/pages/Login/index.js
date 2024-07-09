@@ -12,7 +12,7 @@ class Login {
     preencherEmail() {
         cy.get(el.email)
             .click()
-            .type('eduardo@gmail.br')
+            .type('eduardo1@gmail.br')
         cy.wait(500)
     }
 
