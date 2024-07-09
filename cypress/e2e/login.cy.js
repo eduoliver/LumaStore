@@ -85,16 +85,4 @@ describe('Realizar login na loja', () => {
 
             })
     }) 
-})   
-
-
-
-
-
-
-
-
-
-
-
-
+})
