@@ -9,7 +9,7 @@ cep: '/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form/div/d
 phone:'/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form/div/div[9]/div/input',
 methodo: '[type="radio"].radio',
 nextButton: '.button > span',
-finishShopping: '*[@id="checkout-payment-method-load"]/div/div/div[2]/div[2]/div[4]/div/button/span',
+finishShopping:'.payment-method-content > :nth-child(4) > div.primary > .action > span',
 successShopping: '.base',
-state: 'select'
+state: '/html/body/div[2]/main/div[2]/div/div[2]/div[4]/ol/li[1]/div[2]/form/div/div[5]/div/select'
 }
