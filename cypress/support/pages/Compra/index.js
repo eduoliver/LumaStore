@@ -71,6 +71,7 @@ class Compra {
     next() {
         cy.get(el.nextButton)
             .click()
+        cy.wait(2000)
     }
     
     finalizarCompra() {
@@ -85,10 +86,8 @@ class Compra {
     }
 
     estado() {
-        cy.get(el.state)
+        cy.xpath(el.state)
             .select('Arizona')
     }
 }
-
-
 export default new Compra();

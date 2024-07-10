@@ -7,11 +7,12 @@
 import Cadastro from "../support/pages/Cadastro";
 import Compra from "../support/pages/Compra";
 
-describe.only('Realizar compra de produto na loja', () => {
+describe('Realizar compra de produto na loja', () => {
     context('Dado que Yasmin acessa o formulário de login da loja Luma', () => {
         beforeEach(() => {
             Cadastro.primeiroCadastro();
             Compra.login();
+
         })
             context('Quando ela realiza a compra de um produto', () => {
                 beforeEach(() => {
@@ -20,8 +21,8 @@ describe.only('Realizar compra de produto na loja', () => {
                     Compra.acessarCarrinho();
                     Compra.acessarCheckout();
                     Compra.preencherEndereco();
-                    Compra.preencherCidade();
                     Compra.estado();
+                    Compra.preencherCidade();
                     Compra.preencherCEP();
                     Compra.preencherFone();
                     Compra.metodoEntrega();
